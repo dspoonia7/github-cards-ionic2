@@ -1,0 +1,58 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Users Cards
+    </ion-title>
+    <ion-buttons start>
+      <button ion-button myitem (click)='openModal();' color="primary">
+        Add Cards
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding class="page-home">
+  <!-- <button full ion-button myitem (click)='openModal();'>
+    Add User Cards
+  </button> -->
+
+  <ion-item class="padding0 bmargin5">
+    <ion-label>Sort By</ion-label>
+    <ion-select [(ngModel)]="sortBy" (ionChange)='soryCardsBy();'>
+      <ion-option value="name">Name</ion-option>
+      <ion-option value="location">Location</ion-option>
+      <ion-option value="followers">Followers</ion-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-list class="cards-wrapper">
+    <ion-card *ngFor="let card of userCards">
+      <ion-buttons class="remove-card" end>
+        <button ion-button color="danger" (click)='removeCard($event, card);' clear>
+          <ion-icon name="close"></ion-icon>
+        </button>
+      </ion-buttons>
+      <a href={{card.html_url}} target="_blank">
+        <img src={{card.avatar_url}} />
+        <div class="card-title">{{card.name}}</div>
+        <div class="card-subtitle"><label>Location: </label>{{card.location || 'Unknown'}}</div>
+        <div class="card-subtitle"><label>Followers: </label>{{card.followers}}</div>
+      </a>
+    </ion-card>
+  </ion-list>
+
+  <!-- <ion-item class="padding0">
+    <ion-label color="primary" floating>Seach Users</ion-label>
+    <ion-input type="search" [(ngModel)]='searchText'
+       (input)='onChangeSearch($event.target.value)'>
+    </ion-input>
+  </ion-item>
+
+  <ion-searchbar (ionInput)="getFilteredUsers($event)"></ion-searchbar>
+  <ion-list>
+    <ion-item *ngFor="let user of users">
+      {{ user.login }}
+    </ion-item>
+  </ion-list> -->
+
+</ion-content>
